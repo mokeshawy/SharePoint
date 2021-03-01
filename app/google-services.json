@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "365141315435",
+    "project_id": "sharepoint-7b774",
+    "storage_bucket": "sharepoint-7b774.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:365141315435:android:096026132f0b958818862e",
+        "android_client_info": {
+          "package_name": "com.example.sharepoint"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "365141315435-amu2q2up2sjs4j13p4vm565hfvjc68b4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sharepoint",
+            "certificate_hash": "9c511a7d2ce90bc4b69beaa11c7f5589466b6058"
+          }
+        },
+        {
+          "client_id": "365141315435-d59finkqaiulg7fb46drob6p6i7p4aek.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6S5db1VuZOXPfaHlSErxr3GLcdG9BsYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "365141315435-d59finkqaiulg7fb46drob6p6i7p4aek.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
