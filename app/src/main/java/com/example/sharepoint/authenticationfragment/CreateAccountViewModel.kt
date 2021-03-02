@@ -1,6 +1,5 @@
 package com.example.sharepoint.authenticationfragment
 
-import android.app.AlertDialog
 import android.content.Context
 import android.net.Uri
 import android.util.Patterns

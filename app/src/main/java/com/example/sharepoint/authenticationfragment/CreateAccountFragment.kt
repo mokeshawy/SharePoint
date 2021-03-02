@@ -20,10 +20,7 @@ class CreateAccountFragment : Fragment() {
     val createAccountViewModel  : CreateAccountViewModel by viewModels()
     lateinit var imageUri       : Uri
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         binding = FragmentCreateAccountBinding.inflate(inflater)
         return binding.root
