@@ -7,7 +7,7 @@ object ServiceBuilder {
 
     fun makeRetrofitMaps() : ConnectionEndPoint{
 
-        return Retrofit.Builder().baseUrl("")
+        return Retrofit.Builder().baseUrl("https://maps.googleapis.com/maps/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(ConnectionEndPoint::class.java)
