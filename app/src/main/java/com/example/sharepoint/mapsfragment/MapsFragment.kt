@@ -62,7 +62,7 @@ class MapsFragment : Fragment() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
 
-        // connection fo viewModel
+        // connection for viewModel
         binding.lifecycleOwner  = this
         binding.mapsModel       = mapsViewModel
 
@@ -70,6 +70,7 @@ class MapsFragment : Fragment() {
         firebaseDatabase            = FirebaseDatabase.getInstance()
         userLocation                = firebaseDatabase.getReference("MyLocation")
         userReference               = firebaseDatabase.getReference("UserRef")
+
         // operation on for data Store
         dataStore                   = requireActivity().createDataStore(name = "UserLocationPref")
 
@@ -119,8 +120,9 @@ class MapsFragment : Fragment() {
             }
             googleMap.uiSettings.isZoomControlsEnabled  = true
 
-            binding.button2.setOnClickListener {
-                mapsViewModel.callGoogleDirection(requireActivity(),googleMap , binding.textView2 , binding.textView3)
+            // button get location with distance and duration
+            binding.buttGetLocationId.setOnClickListener {
+                mapsViewModel.callGoogleDirection(requireActivity(),googleMap , binding.distanceTextViewId , binding.durationTextViewId)
             }
         }
     }

@@ -114,7 +114,6 @@ class MapsViewModel : ViewModel() {
         viewModelScope.launch {
             map.addMarker(MarkerOptions().position(latLngOrigin).title("My Location : ${showUserLogInName(NAME_KEY)}").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)))
         }
-
         //map.addMarker(MarkerOptions().position(latLngDestination).title("Location"))
 
         // animate camera to show map with 2 points only
