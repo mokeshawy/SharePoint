@@ -56,7 +56,7 @@ class RecyclerHomeFragmentAdapter (private val dataSet: ArrayList<ShowAllUserMod
 
                         var userId = ds.child("userId").value.toString()
 
-                        dataStore = context.createDataStore( name = "UserPref")
+                        dataStore = context.createDataStore( name = "UserLocationPref")
                         GlobalScope.launch {
                             saveValue(userId)
                         }

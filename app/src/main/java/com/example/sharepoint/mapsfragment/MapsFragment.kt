@@ -45,6 +45,7 @@ class MapsFragment : Fragment() {
     val mapsViewModel                           : MapsViewModel by viewModels()
     lateinit var firebaseDatabase               : FirebaseDatabase
     lateinit var userLocation                   : DatabaseReference
+    lateinit var userReference                  : DatabaseReference
     lateinit var dataStore                      : DataStore<Preferences>
 
     companion object{
@@ -61,15 +62,16 @@ class MapsFragment : Fragment() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
 
-
+        // connection fo viewModel
         binding.lifecycleOwner  = this
         binding.mapsModel       = mapsViewModel
 
         // call operation for firebase
         firebaseDatabase            = FirebaseDatabase.getInstance()
         userLocation                = firebaseDatabase.getReference("MyLocation")
+        userReference               = firebaseDatabase.getReference("UserRef")
         // operation on for data Store
-        dataStore                   = requireActivity().createDataStore(name = "UserPref")
+        dataStore                   = requireActivity().createDataStore(name = "UserLocationPref")
 
     }
 
@@ -77,22 +79,36 @@ class MapsFragment : Fragment() {
     private val callback = OnMapReadyCallback { googleMap ->
 
         lifecycleScope.launch {
-            var ui = showUserId(UID_KEY)
-            userLocation.child(ui.toString()).addValueEventListener( object : ValueEventListener{
+
+            var uId = showUserId(UID_KEY)
+            // show LatLng for user you need show location
+            userLocation.child(uId.toString()).addValueEventListener( object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
 
                     var latitude  = snapshot.child("latitude").value.toString()
                     var longitude = snapshot.child("longitude").value.toString()
 
                     val location = LatLng(latitude.toDouble(), longitude.toDouble())
-                    googleMap.addMarker(MarkerOptions().position(location).title(ui))
-                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location,16.0f))
 
+                    // show user by id into add marker by name
+                    userReference.orderByChild("userId").equalTo(uId).addValueEventListener( object : ValueEventListener{
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            for ( ds in snapshot.children){
+
+                                var name = ds.child("name").value.toString()
+                                googleMap.addMarker(MarkerOptions().position(location).title(name))
+                                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location,16.0f))
+                            }
+                        }
+                        override fun onCancelled(error: DatabaseError) {
+                            TODO("Not yet implemented")
+                        }
+
+                    })
                 }
                 override fun onCancelled(error: DatabaseError) {
                     TODO("Not yet implemented")
                 }
-
             })
 
             // make require permission

@@ -48,7 +48,7 @@ class MapsViewModel : ViewModel() {
 
     fun callGoogleDirection( context : Context , map : GoogleMap , textViewRoutes : TextView , textViewDuration : TextView ){
 
-        dataStore = context.createDataStore(name = "UserPref")
+        dataStore = context.createDataStore(name = "UserLocationPref")
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
         var firebaseDatabase        = FirebaseDatabase.getInstance()
@@ -79,7 +79,7 @@ class MapsViewModel : ViewModel() {
                                 CoroutineScope(Dispatchers.Main).async {
                                     googleDirection.value = response.body()
 
-                                    drawDirections(location?.latitude!!.toDouble() , location?.longitude!!.toDouble() , latitude.toDouble() , longitude.toDouble() , map)
+                                    drawDirections(location?.latitude!!.toDouble() , location?.longitude!!.toDouble() , latitude.toDouble() , longitude.toDouble() , map , context)
                                     textViewRoutes.text   = response.body()!!.routes[0].legs[0].distance.text
                                     textViewDuration.text = response.body()!!.routes[0].legs[0].duration.text
                                 }
@@ -103,15 +103,19 @@ class MapsViewModel : ViewModel() {
     }
 
 
-    suspend fun drawDirections(startLat : Double, startLon:Double, endLat : Double, endLon : Double, map: GoogleMap) {
+    suspend fun drawDirections(startLat : Double, startLon:Double, endLat : Double, endLon : Double, map: GoogleMap , context: Context) {
+        dataStore = context.createDataStore( name = "UserPref")
 
         val path: MutableList<LatLng> = ArrayList()
         val context = GeoApiContext().setQueryRateLimit(3).setApiKey("AIzaSyB4ski2q_cAYGl2LA4aHyjU3LALRspXZvM")
                 .setConnectTimeout(1, TimeUnit.SECONDS).setReadTimeout(1, TimeUnit.SECONDS).setWriteTimeout(1, TimeUnit.SECONDS)
         var latLngOrigin = LatLng(startLat,startLon)
         var latLngDestination = LatLng(endLat,endLon)
-        map.addMarker(MarkerOptions().position(latLngOrigin).title("MyLocation").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)))
-        map.addMarker(MarkerOptions().position(latLngDestination).title(showUserId(UID_KEY).toString()))
+        viewModelScope.launch {
+            map.addMarker(MarkerOptions().position(latLngOrigin).title("My Location : ${showUserLogInName(NAME_KEY)}").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)))
+        }
+
+        //map.addMarker(MarkerOptions().position(latLngDestination).title("Location"))
 
         // animate camera to show map with 2 points only
         val builder: LatLngBounds.Builder = LatLngBounds.Builder()
@@ -168,6 +172,13 @@ class MapsViewModel : ViewModel() {
             val opts = PolylineOptions().addAll(path).color(Color.BLUE).width(8f)
             map.addPolyline(opts)
         }
+    }
+
+    suspend fun showUserLogInName(key : String): String?{
+
+        var dataStoreKey = preferencesKey<String>(key)
+        var preference = dataStore.data.first()
+        return preference[dataStoreKey]
     }
 }
 
