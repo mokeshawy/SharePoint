@@ -28,7 +28,7 @@
                 android:layout_width="363dp"
                 android:layout_height="132dp"
                 android:layout_marginTop="32dp"
-                app:cardBackgroundColor="@color/mr_cast_progressbar_progress_and_thumb_light"
+                app:cardBackgroundColor="#0B8A8F"
                 app:cardCornerRadius="20dp"
                 app:cardMaxElevation="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +82,7 @@
                 android:padding="10dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_iconfinder_avatar_370_456322_6415362"
-                app:civ_border_color="@color/mr_cast_progressbar_progress_and_thumb_light"
+                app:civ_border_color="#0B8A8F"
                 app:civ_border_width="3dp"
                 app:layout_constraintEnd_toEndOf="@+id/cardView"
                 app:layout_constraintStart_toStartOf="@+id/cardView"
@@ -95,8 +95,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="Name"
-                android:textColorHint="@color/mr_cast_progressbar_progress_and_thumb_light"
-                app:hintTextColor="@color/mr_cast_progressbar_progress_and_thumb_light"
+                app:endIconMode="clear_text"
+                app:hintTextColor="#0B8A8F"
+                android:textColorHint="#0B8A8F"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/viewImageCreateAccountId">
@@ -106,7 +107,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:text="@={createAccountModel.editName}"/>
+                    android:text="@={createAccountModel.editName}"
+                    android:textColor="#0B8A8F"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -117,9 +119,9 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:hint="Password"
-                android:textColorHint="@color/mr_cast_progressbar_progress_and_thumb_light"
-                app:hintTextColor="@color/mr_cast_progressbar_progress_and_thumb_light"
-                app:endIconMode="clear_text"
+                app:endIconMode="password_toggle"
+                app:hintTextColor="#0B8A8F"
+                android:textColorHint="#0B8A8F"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/outlinedTextField1">
@@ -129,7 +131,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:text="@={createAccountModel.editPass}"/>
+                    android:text="@={createAccountModel.editPass}"
+                    android:textColor="#0B8A8F"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -139,9 +142,9 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:hint="Email"
-                android:textColorHint="@color/mr_cast_progressbar_progress_and_thumb_light"
-                app:hintTextColor="@color/mr_cast_progressbar_progress_and_thumb_light"
-                app:endIconMode="password_toggle"
+                app:endIconMode="clear_text"
+                app:hintTextColor="#0B8A8F"
+                android:textColorHint="#0B8A8F"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/outlinedTextField2">
@@ -151,7 +154,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
-                    android:text="@={createAccountModel.editEmail}"/>
+                    android:text="@={createAccountModel.editEmail}"
+                    android:textColor="#0B8A8F"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -161,8 +165,8 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:hint="Phone"
-                android:textColorHint="@color/mr_cast_progressbar_progress_and_thumb_light"
-                app:hintTextColor="@color/mr_cast_progressbar_progress_and_thumb_light"
+                app:hintTextColor="#0B8A8F"
+                android:textColorHint="#0B8A8F"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/outlinedTextField3">
@@ -172,7 +176,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:text="@={createAccountModel.editPhone}"/>
+                    android:text="@={createAccountModel.editPhone}"
+                    android:textColor="#0B8A8F"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -194,7 +199,7 @@
                 android:layout_height="28dp"
                 android:layout_marginTop="8dp"
                 android:indeterminate="true"
-                android:indeterminateTint="@color/mr_cast_progressbar_progress_and_thumb_light"
+                android:indeterminateTint="#0B8A8F"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/buttCreateAccountId"
                 app:layout_constraintHorizontal_bias="0.503"

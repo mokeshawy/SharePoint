@@ -48,6 +48,7 @@ class RecyclerHomeFragmentAdapter (private val dataSet: ArrayList<ShowAllUserMod
         
         var firebaseDatabase    = FirebaseDatabase.getInstance()
         var userLocationRef     = firebaseDatabase.getReference("UserRef")
+
         viewHolder.binding.selectUserId.setOnClickListener {
 
             userLocationRef.orderByChild("userId").equalTo(dataSet[position].uId).addValueEventListener( object : ValueEventListener {
@@ -71,7 +72,6 @@ class RecyclerHomeFragmentAdapter (private val dataSet: ArrayList<ShowAllUserMod
             val activity=it!!.context as AppCompatActivity
             activity.supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment , MapsFragment()).addToBackStack(null).commit()
             Toast.makeText( context, dataSet[position].name , Toast.LENGTH_SHORT).show()
-
         }
     }
     // Return the size of your dataset (invoked by the layout manager)

@@ -5,6 +5,7 @@ import android.net.Uri
 import android.util.Patterns
 import android.view.View
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,7 +35,8 @@ class CreateAccountViewModel : ViewModel(){
                       name : EditText ,
                       pass : EditText ,
                       email : EditText ,
-                      phone : EditText){
+                      phone : EditText,
+                      progressBar: ProgressBar){
 
         if(editName.value!!.trim().isEmpty()){
             name.error = "Please enter your name"
@@ -51,6 +53,8 @@ class CreateAccountViewModel : ViewModel(){
         }else if(editPhone.value!!.trim().length < 13){
             phone.error = "Please enter your phone with country code"
         }else{
+
+            progressBar.visibility = View.VISIBLE
 
             // operation for firebase create account with profile photo
             firebaseAuth.createUserWithEmailAndPassword( editEmail.value!!.toString() , editPass.value!!.toString()).addOnCompleteListener {
@@ -76,6 +80,8 @@ class CreateAccountViewModel : ViewModel(){
                                 userReference.child(userId.toString()).setValue(map)
                                 Toast.makeText(context,"Account Created" , Toast.LENGTH_SHORT).show()
                                 Navigation.findNavController(view).navigate(R.id.action_createAccountFragment_to_logInFragment)
+
+                                progressBar.visibility = View.INVISIBLE
                             }
 
                         }else{

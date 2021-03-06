@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.datastore.DataStore
 import androidx.datastore.preferences.Preferences
@@ -89,23 +90,30 @@ class MapsFragment : Fragment() {
                     var latitude  = snapshot.child("latitude").value.toString()
                     var longitude = snapshot.child("longitude").value.toString()
 
-                    val location = LatLng(latitude.toDouble(), longitude.toDouble())
+                    try{
+                        val location = LatLng(latitude.toDouble(), longitude.toDouble())
 
-                    // show user by id into add marker by name
-                    userReference.orderByChild("userId").equalTo(uId).addValueEventListener( object : ValueEventListener{
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            for ( ds in snapshot.children){
+                        // show user by id into add marker by name
+                        userReference.orderByChild("userId").equalTo(uId).addValueEventListener( object : ValueEventListener{
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                for ( ds in snapshot.children){
 
-                                var name = ds.child("name").value.toString()
-                                googleMap.addMarker(MarkerOptions().position(location).title(name))
-                                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location,16.0f))
+                                    var name = ds.child("name").value.toString()
+                                    googleMap.addMarker(MarkerOptions().position(location).title(name))
+                                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location,16.0f))
+                                }
                             }
-                        }
-                        override fun onCancelled(error: DatabaseError) {
-                            TODO("Not yet implemented")
-                        }
+                            override fun onCancelled(error: DatabaseError) {
+                                TODO("Not yet implemented")
+                            }
 
-                    })
+                        })
+                    }catch (e:Exception){
+
+                        Toast.makeText( context,"this account not share location",Toast.LENGTH_LONG ).show()
+
+                    }
+
                 }
                 override fun onCancelled(error: DatabaseError) {
                     TODO("Not yet implemented")
@@ -114,7 +122,9 @@ class MapsFragment : Fragment() {
 
             // make require permission
             if(ActivityCompat.checkSelfPermission(requireContext(),Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+
                 ActivityCompat.requestPermissions(requireActivity(),arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
+
             }else{
                 googleMap.isMyLocationEnabled           = true
             }

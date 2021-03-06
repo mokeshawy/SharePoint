@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<BottomNavigationView>(R.id.navigation).setupWithNavController(navController)
 
         // show fragment name in the top bar
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.logInFragment, R.id.createAccountFragment , R.id.homeFragment , R.id.shareLocationFragment , R.id.profileFragment , R.id.settingFragment , R.id.mapsFragment , R.id.resetPasswordFragment))
+        val appBarConfiguration = AppBarConfiguration(setOf(R.id.logInFragment, R.id.createAccountFragment , R.id.homeFragment , R.id.shareLocationFragment , R.id.addPostFragment , R.id.profileFragment , R.id.settingFragment , R.id.mapsFragment , R.id.resetPasswordFragment))
         setupActionBarWithNavController(navController,appBarConfiguration)
 
         // select fragment you need show the bottom navigation
@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.homeFragment           -> binding.navigation.visibility = View.VISIBLE
                 R.id.shareLocationFragment  -> binding.navigation.visibility = View.VISIBLE
+                R.id.addPostFragment        -> binding.navigation.visibility = View.VISIBLE
                 R.id.profileFragment        -> binding.navigation.visibility = View.VISIBLE
                 R.id.settingFragment        -> binding.navigation.visibility = View.VISIBLE
 

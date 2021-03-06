@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
@@ -19,6 +20,7 @@ class CreateAccountFragment : Fragment() {
     lateinit var binding        : FragmentCreateAccountBinding
     val createAccountViewModel  : CreateAccountViewModel by viewModels()
     lateinit var imageUri       : Uri
+    lateinit var progressBar    : ProgressBar
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -34,6 +36,7 @@ class CreateAccountFragment : Fragment() {
 
 
         // butt create account
+        binding.progressBarCreateAccountId.visibility = View.INVISIBLE
         binding.buttCreateAccountId.setOnClickListener {
             try {
                 createAccountViewModel.createAccount(requireActivity(),
@@ -42,7 +45,8 @@ class CreateAccountFragment : Fragment() {
                         binding.editNameCreateAccountId ,
                         binding.editPassCreateAccountId ,
                         binding.editEmailCreateAccountId ,
-                        binding.editPhoneCreateAccountId)
+                        binding.editPhoneCreateAccountId,
+                        binding.progressBarCreateAccountId)
             }catch (e:Exception){
                 Toast.makeText(requireActivity(),"Please select image",Toast.LENGTH_SHORT).show()
             }

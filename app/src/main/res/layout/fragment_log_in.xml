@@ -28,7 +28,7 @@
                 android:layout_width="363dp"
                 android:layout_height="132dp"
                 android:layout_marginTop="76dp"
-                app:cardBackgroundColor="@color/mr_cast_progressbar_progress_and_thumb_light"
+                app:cardBackgroundColor="#0B8A8F"
                 app:cardCornerRadius="20dp"
                 app:cardMaxElevation="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -44,18 +44,18 @@
                         android:id="@+id/textView"
                         android:layout_width="180dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="48dp"
+                        android:layout_marginStart="72dp"
                         android:text="Share Point"
                         android:textColor="@color/white"
                         android:textSize="35dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.494" />
+                        app:layout_constraintVertical_bias="0.505" />
 
                     <ImageView
-                        android:layout_width="66dp"
-                        android:layout_height="72dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginEnd="32dp"
                         android:background="@drawable/ic_baseline_wrong_location_24"
                         app:layout_constraintBottom_toBottomOf="@+id/textView"
@@ -78,8 +78,8 @@
                 android:layout_marginTop="90dp"
                 app:endIconMode="clear_text"
                 android:hint="Email"
-                app:hintTextColor="@color/mr_cast_progressbar_progress_and_thumb_light"
-                android:textColorHint="@color/mr_cast_progressbar_progress_and_thumb_light"
+                app:hintTextColor="#0B8A8F"
+                android:textColorHint="#0B8A8F"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView">
@@ -90,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
                     android:text="@={logInModel.editEmail}"
-                    android:textColor="@color/mr_cast_progressbar_progress_and_thumb_light"/>
+                    android:textColor="#0B8A8F"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,8 +102,8 @@
                 android:layout_marginTop="8dp"
                 app:endIconMode="password_toggle"
                 android:hint="Password"
-                app:hintTextColor="@color/mr_cast_progressbar_progress_and_thumb_light"
-                android:textColorHint="@color/mr_cast_progressbar_progress_and_thumb_light"
+                app:hintTextColor="#0B8A8F"
+                android:textColorHint="#0B8A8F"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/outlinedTextField1">
@@ -114,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
                     android:text="@={logInModel.editPass}"
-                    android:textColor="@color/mr_cast_progressbar_progress_and_thumb_light"/>
+                    android:textColor="#0B8A8F"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -134,8 +134,8 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Dont have accuont? signup"
-                android:textColor="#AD4285F4"
+                android:text="Don't have account? signup"
+                android:textColor="#BD0B8A8F"
                 app:layout_constraintEnd_toEndOf="@+id/buttLogIn"
                 app:layout_constraintStart_toStartOf="@+id/buttLogIn"
                 app:layout_constraintTop_toBottomOf="@+id/buttLogIn" />
@@ -146,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="forget password?"
-                android:textColor="#AD4285F4"
+                android:textColor="#BD0B8A8F"
                 android:layout_marginTop="4dp"
                 app:layout_constraintEnd_toEndOf="@+id/textGoCreateAccountId"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -159,7 +159,7 @@
                 android:layout_width="39dp"
                 android:layout_height="28dp"
                 android:indeterminate="true"
-                android:indeterminateTint="@color/mr_cast_progressbar_progress_and_thumb_light"
+                android:indeterminateTint="#CF0B8A8F"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/forgetPassId"
                 app:layout_constraintHorizontal_bias="0.503"

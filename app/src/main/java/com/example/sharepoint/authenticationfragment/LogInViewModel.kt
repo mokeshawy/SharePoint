@@ -5,6 +5,7 @@ import android.content.Context
 import android.provider.Settings
 import android.view.View
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.datastore.DataStore
 import androidx.datastore.preferences.*
@@ -46,9 +47,10 @@ class LogInViewModel() : ViewModel(){
     var firebaseAuth        = FirebaseAuth.getInstance()
     var firebaseDatabase    = FirebaseDatabase.getInstance()
     var userReference       = firebaseDatabase.getReference("UserRef")
-    
+
     // fun log in
-    fun logIn( context : Context , view : View , email : EditText , pass : EditText){
+    fun logIn( context : Context , view : View , email : EditText , pass : EditText , progressBar: ProgressBar){
+
         if(editEmail.value!!.trim().isEmpty()){
             email.error = " Please enter your email"
         }else if(editPass.value!!.trim().isEmpty()){
@@ -61,7 +63,7 @@ class LogInViewModel() : ViewModel(){
             alert.setTitle("Are you need login")
             alert.setMessage("after click 'yes' account will be go log in")
             alert.setPositiveButton("yes"){dialog,which->
-
+                progressBar.visibility = View.VISIBLE
                 firebaseAuth.signInWithEmailAndPassword(editEmail.value!! , editPass.value!! ).addOnCompleteListener {
                     if(it.isSuccessful){
                         if(firebaseAuth.currentUser?.isEmailVerified!!){
@@ -71,6 +73,8 @@ class LogInViewModel() : ViewModel(){
 
                             Toast.makeText(context,"Welcome ${editEmail.value}",Toast.LENGTH_SHORT).show()
                             Navigation.findNavController(view).navigate(R.id.action_logInFragment_to_homeFragment)
+
+                            progressBar.visibility = View.INVISIBLE
 
                             // show data for user login by currentUser?.uid and save dataStore
                             userReference.child(userId.toString()).addValueEventListener(object : ValueEventListener{
@@ -111,6 +115,7 @@ class LogInViewModel() : ViewModel(){
     }
     // fun log in
 
+    // fun save value by DataStore
     suspend fun saveValue(name : String , pass : String , mail : String , phone : String , userId : String,  image : String){
 
         dataStore.edit { userPref ->

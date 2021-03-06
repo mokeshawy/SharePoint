@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.SharePoint" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/mr_cast_progressbar_progress_and_thumb_light</item>
+        <item name="colorPrimary">#0B8A8F</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.datastore.DataStore
 import androidx.datastore.preferences.Preferences
 import androidx.datastore.preferences.edit
@@ -19,6 +20,7 @@ class LogInFragment : Fragment() {
 
     lateinit var binding    : FragmentLogInBinding
     val viewModelLogIn      : LogInViewModel by viewModels()
+    lateinit var progressBar: ProgressBar
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -36,8 +38,9 @@ class LogInFragment : Fragment() {
 
 
         // log in with email and password
+        binding.progressBarLogInId.visibility = View.INVISIBLE
         binding.buttLogIn.setOnClickListener {
-            viewModelLogIn.logIn(requireActivity() , view , binding.editEmailLogInId , binding.editPassLogInId )
+            viewModelLogIn.logIn(requireActivity() , view , binding.editEmailLogInId , binding.editPassLogInId , binding.progressBarLogInId)
         }
 
         // go create account
