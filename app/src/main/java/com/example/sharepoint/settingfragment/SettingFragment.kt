@@ -12,7 +12,8 @@ import com.example.sharepoint.sharelocationfragment.ShareLocationViewModel
 
 class SettingFragment : Fragment() {
 
-    lateinit var binding: FragmentSettingBinding
+    lateinit var binding    : FragmentSettingBinding
+    val settingViewModel    : SettingViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -24,6 +25,9 @@ class SettingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.lifecycleOwner  = this
+        binding.settingModel    = settingViewModel
 
     }
 }

@@ -47,11 +47,7 @@
         android:id="@+id/profileFragment"
         android:name="com.example.sharepoint.profilefragment.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_profileFragment_to_editProfileFragment"
-            app:destination="@id/editProfileFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.example.sharepoint.settingfragment.SettingFragment"
@@ -65,17 +61,9 @@
     <fragment
         android:id="@+id/resetPasswordFragment"
         android:name="com.example.sharepoint.authenticationfragment.ResetPasswordFragment"
-        android:label="fragment_reset_password"
+        android:label="Reset Password"
         tools:layout="@layout/fragment_reset_password" />
-    <fragment
-        android:id="@+id/editProfileFragment"
-        android:name="com.example.sharepoint.editprofile.EditProfileFragment"
-        android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" >
-        <action
-            android:id="@+id/action_editProfileFragment_to_logInFragment"
-            app:destination="@id/logInFragment" />
-    </fragment>
+
     <fragment
         android:id="@+id/addPostFragment"
         android:name="com.example.sharepoint.addpostfragment.AddPostFragment"
@@ -90,4 +78,10 @@
         android:name="com.example.sharepoint.showpostfragment.ShowPostFragment"
         android:label="Show Post"
         tools:layout="@layout/fragment_show_post" />
+    <fragment
+        android:id="@+id/editProfileUserFragment"
+        android:name="com.example.sharepoint.editprofile.EditProfileUserFragment"
+        android:label="fragment_edit_profile_user"
+        tools:layout="@layout/fragment_edit_profile_user" />
+
 </navigation>

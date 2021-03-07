@@ -19,30 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:text="Share Point"
-                android:textColor="@color/white"
-                android:textSize="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.069" />
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/ic_baseline_wrong_location_24"
-                app:layout_constraintBottom_toBottomOf="@+id/textView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/textView"
-                app:layout_constraintTop_toTopOf="@+id/textView"
-                app:layout_constraintVertical_bias="1.0" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/showPostImageId"
@@ -56,7 +32,7 @@
                 android:elevation="5dp"
                 android:padding="10dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_iconfinder_social_media_01_2274405"
+                android:src="@drawable/ic_iconfinder_avatar_370_456322_6415362"
                 app:civ_border_color="#FFEB3B"
                 app:civ_border_width="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="post by :"
+                android:text=" by :"
                 android:textColor="@color/white"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="parent"

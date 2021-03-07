@@ -28,7 +28,7 @@ class ShareLocationFragment : Fragment() {
         binding.shareLocationModel  = shareLocationViewModel
 
         // view information for user log in
-        shareLocationViewModel.readData(requireActivity() , binding.textViewNameUserLogInId , binding.viewImageHomeProfileId)
+        shareLocationViewModel.userProfile(requireActivity() , binding.textViewNameUserLogInId , binding.viewImageHomeProfileId)
 
         // butt send location for user log in
         binding.buttSendMyLocationId.setOnClickListener {

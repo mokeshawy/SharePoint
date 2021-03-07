@@ -2,28 +2,24 @@ package com.example.sharepoint.addpostfragment
 
 import android.content.Context
 import android.net.Uri
-import android.provider.Settings
 import android.view.View
 import android.widget.*
 import androidx.datastore.DataStore
 import androidx.datastore.preferences.Preferences
 import androidx.datastore.preferences.createDataStore
 import androidx.datastore.preferences.preferencesKey
-import androidx.datastore.preferences.preferencesSetKey
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import com.example.sharepoint.R
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import org.joda.time.DateTimeUtils.currentTimeMillis
 
 class AddPostViewModel : ViewModel() {
 
@@ -81,17 +77,38 @@ class AddPostViewModel : ViewModel() {
         }
     }
 
-    suspend fun showImage(key : String): String?{
-        var dataStoreKey = preferencesKey<String>(key)
-        var preference = dataStore.data.first()
-        return preference[dataStoreKey]
+    suspend fun showName( key : String ): String?{
 
+        var dataStoreKey = preferencesKey<String>(key)
+        var preference  = dataStore.data.first()
+        return preference[dataStoreKey]
     }
 
-    suspend fun showName( key : String ): String?{
-        var dataStoreKey = preferencesKey<String>(key)
-        var preference = dataStore.data.first()
-        return preference[dataStoreKey]
+    suspend fun showPassword( key : String ): String?{
 
+        var dataStoreKey = preferencesKey<String>(key)
+        var preference  = dataStore.data.first()
+        return preference[dataStoreKey]
+    }
+
+    suspend fun showEmail( key : String ): String?{
+
+        var dataStoreKey = preferencesKey<String>(key)
+        var preference  = dataStore.data.first()
+        return preference[dataStoreKey]
+    }
+
+    suspend fun showImage( key : String ): String?{
+
+        var dataStoreKey = preferencesKey<String>(key)
+        var preference  = dataStore.data.first()
+        return preference[dataStoreKey]
+    }
+
+    suspend fun showPhone( key : String ): String?{
+
+        var dataStoreKey = preferencesKey<String>(key)
+        var preference  = dataStore.data.first()
+        return preference[dataStoreKey]
     }
 }
