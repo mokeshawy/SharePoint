@@ -5,14 +5,14 @@
 
     <data>
         <variable
-            name="modelHome"
-            type="com.example.sharepoint.homefragment.HomeViewModel" />
+            name="showPostModel"
+            type="com.example.sharepoint.showpostfragment.ShowPostViewModel" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".homefragment.HomeFragment"
+        tools:context=".showpostfragment.ShowPostFragment"
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -62,7 +62,7 @@
                         app:layout_constraintVertical_bias="1.0" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/viewImageHomeProfileId"
+                        android:id="@+id/viewImageShowPostProfileId"
                         android:layout_width="121dp"
                         android:layout_height="110dp"
                         android:layout_alignParentEnd="true"
@@ -81,15 +81,15 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textViewNameUserLogInId"
+                        android:id="@+id/textViewNameProfileShowPostId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="24dp"
                         android:text="Test"
                         android:textColor="@color/white"
                         android:textSize="15sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/viewImageHomeProfileId"
-                        app:layout_constraintEnd_toStartOf="@+id/viewImageHomeProfileId"
+                        app:layout_constraintBottom_toBottomOf="@+id/viewImageShowPostProfileId"
+                        app:layout_constraintEnd_toStartOf="@+id/viewImageShowPostProfileId"
                         app:layout_constraintHorizontal_bias="0.51"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -104,8 +104,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/textProfileId"
                         app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toStartOf="@+id/viewImageHomeProfileId"
-                        app:layout_constraintTop_toBottomOf="@+id/viewImageHomeProfileId"
+                        app:layout_constraintStart_toStartOf="@+id/viewImageShowPostProfileId"
+                        app:layout_constraintTop_toBottomOf="@+id/viewImageShowPostProfileId"
                         app:layout_constraintVertical_bias="0.00999999" />
 
                     <TextView
@@ -116,8 +116,8 @@
                         android:text=" Logout"
                         android:textColor="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/viewImageHomeProfileId"
-                        app:layout_constraintTop_toBottomOf="@+id/viewImageHomeProfileId"
+                        app:layout_constraintEnd_toEndOf="@+id/viewImageShowPostProfileId"
+                        app:layout_constraintTop_toBottomOf="@+id/viewImageShowPostProfileId"
                         app:layout_constraintVertical_bias="0.00999999" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -125,19 +125,20 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerShowUserId"
+                android:id="@+id/recyclerShowPostId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="124dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView"
-                app:layout_constraintVertical_bias="0.108" />
-
+                app:layout_constraintVertical_bias="0.028" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </ScrollView>
 </layout>

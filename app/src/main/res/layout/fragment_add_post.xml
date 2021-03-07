@@ -1,14 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".addpostfragment.AddPostFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="addPostModel"
+            type="com.example.sharepoint.addpostfragment.AddPostViewModel" />
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".addpostfragment.AddPostFragment"
+        android:fillViewport="true">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="163dp"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="#0B8A8F"
+                app:cardCornerRadius="20dp"
+                app:cardMaxElevation="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.495"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="Share Point"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.111" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="32dp"
+                        android:background="@drawable/ic_baseline_wrong_location_24"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/textView"
+                        app:layout_constraintTop_toTopOf="@+id/textView"
+                        app:layout_constraintVertical_bias="1.0" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/viewImageAddPostProfileId"
+                        android:layout_width="121dp"
+                        android:layout_height="110dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:clickable="true"
+                        android:elevation="5dp"
+                        android:padding="10dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_iconfinder_avatar_370_456322_6415362"
+                        app:civ_border_color="#FFEB3B"
+                        app:civ_border_width="3dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textViewNameProfileAddPostId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"
+                        android:text="Test"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/viewImageAddPostProfileId"
+                        app:layout_constraintEnd_toStartOf="@+id/viewImageAddPostProfileId"
+                        app:layout_constraintHorizontal_bias="0.51"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView"
+                        app:layout_constraintVertical_bias="0.921" />
+
+                    <TextView
+                        android:id="@+id/TextLogoutId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Profile |"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/textProfileId"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="@+id/viewImageAddPostProfileId"
+                        app:layout_constraintTop_toBottomOf="@+id/viewImageAddPostProfileId"
+                        app:layout_constraintVertical_bias="0.00999999" />
+
+                    <TextView
+                        android:id="@+id/textProfileId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text=" Logout"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/viewImageAddPostProfileId"
+                        app:layout_constraintTop_toBottomOf="@+id/viewImageAddPostProfileId"
+                        app:layout_constraintVertical_bias="0.00999999" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Input Name create account-->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/addPostImageId"
+                android:layout_width="160dp"
+                android:layout_height="152dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="64dp"
+                android:clickable="true"
+                android:elevation="5dp"
+                android:padding="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_iconfinder_social_media_01_2274405"
+                app:civ_border_color="#FFFFFFFF"
+                app:civ_border_width="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="Writ your post"
+                android:textColor="#0B8A8F"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.055"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addPostImageId" />
+
+            <EditText
+                android:id="@+id/editAddPostId"
+                android:layout_width="match_parent"
+                android:layout_height="92dp"
+                android:layout_marginTop="28dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@={addPostModel.editAddSharePost}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/buttAddPostId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="104dp"
+                android:text="Post"
+                app:layout_constraintBottom_toBottomOf="@+id/buttGoShowPostPageId"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editAddPostId"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <ProgressBar
+                android:id="@+id/progressBarAddPostId"
+                android:layout_width="39dp"
+                android:layout_height="28dp"
+                android:indeterminate="true"
+                android:indeterminateTint="#0B8A8F"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/buttAddPostId"
+                app:layout_constraintHorizontal_bias="0.51"
+                app:layout_constraintStart_toStartOf="@+id/buttGoShowPostPageId"
+                app:layout_constraintTop_toBottomOf="@+id/buttAddPostId"
+                app:layout_constraintVertical_bias="0.204" />
+
+            <Button
+                android:id="@+id/buttGoShowPostPageId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="36dp"
+                android:text="Show Post"
+                app:layout_constraintEnd_toStartOf="@+id/buttAddPostId"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editAddPostId" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+</layout>

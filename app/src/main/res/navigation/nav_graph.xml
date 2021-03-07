@@ -80,5 +80,14 @@
         android:id="@+id/addPostFragment"
         android:name="com.example.sharepoint.addpostfragment.AddPostFragment"
         android:label="Add Post"
-        tools:layout="@layout/fragment_add_post" />
+        tools:layout="@layout/fragment_add_post" >
+        <action
+            android:id="@+id/action_addPostFragment_to_showPostFragment"
+            app:destination="@id/showPostFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/showPostFragment"
+        android:name="com.example.sharepoint.showpostfragment.ShowPostFragment"
+        android:label="Show Post"
+        tools:layout="@layout/fragment_show_post" />
 </navigation>
