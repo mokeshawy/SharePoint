@@ -26,7 +26,7 @@ class ShowPostViewModel : ViewModel() {
         var IMAGE_KEY   = "image"
     }
 
-    fun showUserProfile(context : Context, imageView: ImageView , textName : TextView){
+    fun userProfile(context : Context, imageView: ImageView , textName : TextView){
         dataStore = context.createDataStore(name = "UserPref")
 
         viewModelScope.launch {

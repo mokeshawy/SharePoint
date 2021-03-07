@@ -29,7 +29,7 @@ class ShowPostFragment : Fragment() {
         binding.showPostModel   = showPostViewModel
 
         // show user profile
-        showPostViewModel.showUserProfile(requireActivity() , binding.viewImageShowPostProfileId , binding.textViewNameProfileShowPostId)
+        showPostViewModel.userProfile(requireActivity() , binding.viewImageShowPostProfileId , binding.textViewNameProfileShowPostId)
 
         showPostViewModel.showPost()
         showPostViewModel.showPostForAllUser.observe(viewLifecycleOwner, Observer {

@@ -35,7 +35,7 @@ class HomeViewModel() : ViewModel() {
     var array             = ArrayList<ShowAllUserModel>()
 
     // fun show all data for user in recycler view
-    fun showUser(){
+    fun userProfile(){
         array = ArrayList()
         userReference.addValueEventListener( object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {

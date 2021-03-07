@@ -35,11 +35,11 @@ class AddPostFragment : Fragment() {
         binding.lifecycleOwner  = this
         binding.addPostModel    = addPostViewModel
 
-        addPostViewModel.showUserForUser( requireActivity() , binding.viewImageAddPostProfileId , binding.textViewNameProfileAddPostId )
+        addPostViewModel.userProfile( requireActivity() , binding.viewImageAddPostProfileId , binding.textViewNameProfileAddPostId )
 
         // add post
         binding.progressBarAddPostId.visibility = View.INVISIBLE
-        binding.buttGoShowPostPageId.setOnClickListener {
+        binding.buttAddPostId.setOnClickListener {
             try{
                 addPostViewModel.addPost( requireActivity() , view, imageUri , binding.editAddPostId , binding.progressBarAddPostId)
             }catch (e:Exception){

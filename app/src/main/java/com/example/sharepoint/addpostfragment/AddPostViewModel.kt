@@ -35,7 +35,7 @@ class AddPostViewModel : ViewModel() {
 
     var editAddSharePost = MutableLiveData<String>("")
 
-    fun showUserForUser(context : Context, imageView: ImageView , textViewName : TextView){
+    fun userProfile(context : Context, imageView: ImageView , textViewName : TextView){
         dataStore = context.createDataStore(name = "UserPref")
         viewModelScope.launch {
             textViewName.text = showName(NAME_KEY)
@@ -68,7 +68,8 @@ class AddPostViewModel : ViewModel() {
                         viewModelScope.launch {
                             map["name"]         = showName(NAME_KEY).toString()
                         }
-                        addPostReference.child(userId.toString()).setValue(map)
+                            map["userId"]       = userId.toString()
+                        addPostReference.child(userId.toString()+System.currentTimeMillis()).setValue(map)
                         Navigation.findNavController(view).navigate(R.id.action_addPostFragment_to_showPostFragment)
                         progressBar.visibility = View.INVISIBLE
                     }
@@ -81,7 +82,6 @@ class AddPostViewModel : ViewModel() {
     }
 
     suspend fun showImage(key : String): String?{
-
         var dataStoreKey = preferencesKey<String>(key)
         var preference = dataStore.data.first()
         return preference[dataStoreKey]
@@ -89,7 +89,6 @@ class AddPostViewModel : ViewModel() {
     }
 
     suspend fun showName( key : String ): String?{
-
         var dataStoreKey = preferencesKey<String>(key)
         var preference = dataStore.data.first()
         return preference[dataStoreKey]

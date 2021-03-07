@@ -72,7 +72,7 @@ class ShareLocationViewModel : ViewModel() {
 
 
     // Show data form dataStore
-    fun readData(context: Context, nameText : TextView, imageProfile : ImageView){
+    fun userProfile(context: Context, nameText : TextView, imageProfile : ImageView){
         dataStore = context.createDataStore(name = "UserPref")
         viewModelScope.launch {
             nameText.text = showdName(HomeViewModel.NAME_KEY)

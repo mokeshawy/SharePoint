@@ -36,7 +36,7 @@ class HomeFragment : Fragment() {
         // call for show data for user profile from dataStore
         homeViewModel.readData(requireActivity(), binding.textViewNameUserLogInId , binding.viewImageHomeProfileId)
 
-        homeViewModel.showUser()
+        homeViewModel.userProfile()
         homeViewModel.allUserSignUpShow.observe(viewLifecycleOwner, Observer {
 
             binding.recyclerShowUserId.adapter = RecyclerHomeFragmentAdapter(it,requireActivity())
