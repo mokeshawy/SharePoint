@@ -84,28 +84,7 @@ class AddPostViewModel : ViewModel() {
         return preference[dataStoreKey]
     }
 
-    suspend fun showPassword( key : String ): String?{
-
-        var dataStoreKey = preferencesKey<String>(key)
-        var preference  = dataStore.data.first()
-        return preference[dataStoreKey]
-    }
-
-    suspend fun showEmail( key : String ): String?{
-
-        var dataStoreKey = preferencesKey<String>(key)
-        var preference  = dataStore.data.first()
-        return preference[dataStoreKey]
-    }
-
     suspend fun showImage( key : String ): String?{
-
-        var dataStoreKey = preferencesKey<String>(key)
-        var preference  = dataStore.data.first()
-        return preference[dataStoreKey]
-    }
-
-    suspend fun showPhone( key : String ): String?{
 
         var dataStoreKey = preferencesKey<String>(key)
         var preference  = dataStore.data.first()

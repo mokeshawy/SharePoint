@@ -37,7 +37,8 @@ class MainActivity : AppCompatActivity() {
             R.id.resetPasswordFragment,
             R.id.resetPasswordFragment,
             R.id.addPostFragment,
-            R.id.showPostFragment))
+            R.id.showPostFragment,
+            R.id.editProfileUserFragment))
         setupActionBarWithNavController(navController,appBarConfiguration)
 
         // select fragment you need show the bottom navigation

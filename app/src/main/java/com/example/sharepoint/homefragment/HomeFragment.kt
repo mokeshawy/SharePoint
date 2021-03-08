@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
-import com.example.sharepoint.R
 import com.example.sharepoint.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -41,5 +39,6 @@ class HomeFragment : Fragment() {
 
             binding.recyclerShowUserId.adapter = RecyclerHomeFragmentAdapter(it,requireActivity())
         })
+
     }
 }

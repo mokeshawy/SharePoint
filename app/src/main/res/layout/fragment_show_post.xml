@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".showpostfragment.ShowPostFragment"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:background="#E6EAE9E9">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -24,13 +25,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="163dp"
                 android:layout_margin="5dp"
-                app:cardBackgroundColor="#0B8A8F"
+                app:cardBackgroundColor="#373737"
                 app:cardCornerRadius="20dp"
                 app:cardMaxElevation="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -53,7 +56,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginEnd="32dp"
-                        android:background="@drawable/ic_baseline_wrong_location_24"
+                        android:background="@drawable/ic_baseline_add_location_alt_24"
                         app:layout_constraintBottom_toBottomOf="@+id/textView"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -75,7 +78,7 @@
                         android:padding="10dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_iconfinder_avatar_370_456322_6415362"
-                        app:civ_border_color="#FFEB3B"
+                        app:civ_border_color="#EEE"
                         app:civ_border_width="3dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -128,15 +131,13 @@
                 android:id="@+id/recyclerShowPostId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="220dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView"
-                app:layout_constraintVertical_bias="0.014" />
+                app:layout_constraintVertical_bias="0.108" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

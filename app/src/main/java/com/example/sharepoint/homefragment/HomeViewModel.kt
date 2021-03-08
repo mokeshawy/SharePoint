@@ -14,7 +14,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
@@ -37,6 +36,7 @@ class HomeViewModel() : ViewModel() {
     // fun show all data for user in recycler view
     fun userProfile(){
         array = ArrayList()
+
         userReference.addValueEventListener( object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 for( ds in snapshot.children){
@@ -52,7 +52,6 @@ class HomeViewModel() : ViewModel() {
                 TODO("Not yet implemented")
             }
         })
-        allUserSignUpShow.value
     }
 
 

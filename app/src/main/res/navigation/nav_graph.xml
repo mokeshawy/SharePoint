@@ -52,7 +52,11 @@
         android:id="@+id/settingFragment"
         android:name="com.example.sharepoint.settingfragment.SettingFragment"
         android:label="Setting"
-        tools:layout="@layout/fragment_setting" />
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/action_settingFragment_to_editProfileUserFragment"
+            app:destination="@id/editProfileUserFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.example.sharepoint.mapsfragment.MapsFragment"
@@ -81,7 +85,11 @@
     <fragment
         android:id="@+id/editProfileUserFragment"
         android:name="com.example.sharepoint.editprofile.EditProfileUserFragment"
-        android:label="fragment_edit_profile_user"
-        tools:layout="@layout/fragment_edit_profile_user" />
+        android:label="EditProfile"
+        tools:layout="@layout/fragment_edit_profile_user" >
+        <action
+            android:id="@+id/action_editProfileUserFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+    </fragment>
 
 </navigation>

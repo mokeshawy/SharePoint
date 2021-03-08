@@ -23,14 +23,15 @@
                 android:id="@+id/cardView"
                 android:layout_width="371dp"
                 android:layout_height="485dp"
-                app:cardBackgroundColor="#0B8A8F"
+                app:cardBackgroundColor="#373737"
                 app:cardCornerRadius="20dp"
                 app:cardMaxElevation="25dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.39999998">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -53,7 +54,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginEnd="32dp"
-                        android:background="@drawable/ic_baseline_wrong_location_24"
+                        android:background="@drawable/ic_baseline_add_location_alt_24"
                         app:layout_constraintBottom_toBottomOf="@+id/textView"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -75,7 +76,7 @@
                         android:padding="10dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_iconfinder_avatar_370_456322_6415362"
-                        app:civ_border_color="#FFEB3B"
+                        app:civ_border_color="#EEE"
                         app:civ_border_width="3dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -109,50 +110,71 @@
                         android:id="@+id/textViewNameUserSettingId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="192dp"
+                        android:layout_marginBottom="228dp"
                         android:text="textViewNameUserLogIn"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.494"
+                        app:layout_constraintHorizontal_bias="0.496"
                         app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
                         android:id="@+id/textViewEditProfileId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Edit Profile"
                         android:textColor="@color/white"
+                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/textViewEditEmailId"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewNameUserSettingId" />
+                        app:layout_constraintTop_toBottomOf="@+id/textViewNameUserSettingId"
+                        app:layout_constraintVertical_bias="0.52" />
 
                     <TextView
                         android:id="@+id/textViewEditEmailId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Edit Email"
                         android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/textViewResetPassId"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/textViewEditProfileId"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewNameUserSettingId"
+                        app:layout_constraintVertical_bias="0.52" />
+
+                    <TextView
+                        android:id="@+id/textViewResetPassId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Reset Password"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/textViewDeleteAccountId"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/textViewEditProfileId"
+                        app:layout_constraintStart_toEndOf="@+id/textViewEditEmailId"
                         app:layout_constraintTop_toBottomOf="@+id/textViewNameUserSettingId" />
 
                     <TextView
                         android:id="@+id/textViewDeleteAccountId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Delete Account"
                         android:textColor="@color/white"
+                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/textViewEditEmailId"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewNameUserSettingId" />
+                        app:layout_constraintStart_toEndOf="@+id/textViewResetPassId"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewNameUserSettingId"
+                        app:layout_constraintVertical_bias="0.52" />
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
