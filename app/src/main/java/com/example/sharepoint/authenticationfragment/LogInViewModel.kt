@@ -70,6 +70,7 @@ class LogInViewModel() : ViewModel(){
 
                             // save id for user login in variable
                             var userId = firebaseAuth.currentUser?.uid
+                            var userEmail = firebaseAuth.currentUser?.email
 
                             Toast.makeText(context,"Welcome ${editEmail.value}",Toast.LENGTH_SHORT).show()
                             Navigation.findNavController(view).navigate(R.id.action_logInFragment_to_homeFragment)
@@ -81,8 +82,6 @@ class LogInViewModel() : ViewModel(){
                                 override fun onDataChange(snapshot: DataSnapshot) {
 
                                     var name    = snapshot.child("name").value.toString()
-                                    var pass    = snapshot.child("password").value.toString()
-                                    var mail    = snapshot.child("email").value.toString()
                                     var phone   = snapshot.child("phone").value.toString()
                                     var userId  = snapshot.child("userId").value.toString()
                                     var image   = snapshot.child("image").value.toString()
@@ -90,7 +89,7 @@ class LogInViewModel() : ViewModel(){
                                     // Save data by dataStore
                                     dataStore = context.createDataStore( name = "UserPref")
                                     viewModelScope.launch {
-                                        saveValue( name, pass, mail, phone, userId , image )
+                                        saveValue( name, editPass.value!! , editEmail.value!! , phone, userId , image )
                                     }
                                 }
 
@@ -102,9 +101,11 @@ class LogInViewModel() : ViewModel(){
                         }else{
 
                             Toast.makeText(context,"Please check your email confirmation",Toast.LENGTH_SHORT).show()
+                            progressBar.visibility = View.INVISIBLE
                         }
                     }else{
                         Toast.makeText(context,it.exception.toString(),Toast.LENGTH_SHORT).show()
+                        progressBar.visibility = View.INVISIBLE
                     }
                 }
             }

@@ -77,6 +77,11 @@ class AddPostViewModel : ViewModel() {
         }
     }
 
+    fun userLogout( view : View){
+        firebaseAuth.signOut()
+        Navigation.findNavController(view).navigate(R.id.action_addPostFragment_to_logInFragment)
+    }
+
     suspend fun showName( key : String ): String?{
 
         var dataStoreKey = preferencesKey<String>(key)

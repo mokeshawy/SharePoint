@@ -1,5 +1,6 @@
 package com.example.sharepoint.addpostfragment
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -56,6 +57,24 @@ class AddPostFragment : Fragment() {
             binding.progressBarAddPostId.visibility = View.INVISIBLE
         }
 
+
+        // text view butt log out
+        binding.texViewGoProfileId.setOnClickListener {
+            findNavController().navigate(R.id.action_addPostFragment_to_profileFragment)
+        }
+
+        // text view butt logout
+        binding.textViewLogoutId.setOnClickListener {
+            var alert = AlertDialog.Builder(requireActivity())
+            alert.setTitle("are you need logout")
+            alert.setMessage("click yes will go login page")
+            alert.setPositiveButton("yes"){dialog,which->
+
+                addPostViewModel.userLogout( view)
+            }
+            alert.setNegativeButton("no",null)
+            alert.create().show()
+        }
         // select image
         binding.addPostImageId.setOnClickListener {
             var intent = Intent(Intent.ACTION_PICK)

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
-            name="logInModel"
-            type="com.example.sharepoint.authenticationfragment.LogInViewModel" />
+            name="updateEmailModel"
+            type="com.example.sharepoint.updateemailfragment.UpdateEmailViewModel" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".authenticationfragment.LogInFragment"
+        tools:context=".updateemailfragment.UpdateEmailFragment"
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,13 +44,14 @@
                         android:id="@+id/textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="80dp"
+                        android:layout_marginStart="64dp"
                         android:text="Share Point"
                         android:textColor="@color/white"
-                        android:textSize="30dp"
+                        android:textSize="32dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.505" />
 
                     <ImageView
                         android:layout_width="60dp"
@@ -62,105 +63,60 @@
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/textView"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.86" />
+                        app:layout_constraintVertical_bias="1.0" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/outlinedTextField1"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="150dp"
-                app:endIconMode="clear_text"
-                android:hint="Email"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editEmailLogInId"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:text="@={logInModel.editEmail}"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/outlinedTextField2"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:endIconMode="password_toggle"
-                android:hint="Password"
+                android:layout_marginTop="150dp"
+                android:hint="Email"
+                app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/outlinedTextField1">
+                app:layout_constraintTop_toBottomOf="@+id/cardView">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editPassLogInId"
+                    android:id="@+id/editTextUpdateEmailId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:text="@={logInModel.editPass}"/>
+                    android:inputType="textEmailAddress"
+                    android:text="@={updateEmailModel.editUpdateEmail}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
+
             <Button
-                android:id="@+id/buttLogIn"
+                android:id="@+id/buttUpdateEmailId"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:text="LogIn"
+                android:layout_marginTop="36dp"
+                android:text="update Email"
                 app:layout_constraintEnd_toEndOf="@+id/outlinedTextField2"
-                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintHorizontal_bias="0.493"
                 app:layout_constraintStart_toStartOf="@+id/outlinedTextField2"
                 app:layout_constraintTop_toBottomOf="@+id/outlinedTextField2" />
 
-            <TextView
-                android:id="@+id/textGoCreateAccountId"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Don't have account? signup"
-                app:layout_constraintEnd_toEndOf="@+id/buttLogIn"
-                app:layout_constraintStart_toStartOf="@+id/buttLogIn"
-                app:layout_constraintTop_toBottomOf="@+id/buttLogIn" />
-
-            <TextView
-                android:id="@+id/forgetPassId"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="forget password?"
-                android:layout_marginTop="4dp"
-                app:layout_constraintEnd_toEndOf="@+id/textGoCreateAccountId"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textGoCreateAccountId"
-                app:layout_constraintTop_toBottomOf="@+id/textGoCreateAccountId" />
-
-
             <ProgressBar
-                android:id="@+id/progressBarLogInId"
+                android:id="@+id/progressBarUpdateEmailId"
                 android:layout_width="39dp"
                 android:layout_height="28dp"
                 android:indeterminate="true"
                 android:indeterminateTint="#262626"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/forgetPassId"
+                app:layout_constraintEnd_toEndOf="@+id/buttUpdateEmailId"
                 app:layout_constraintHorizontal_bias="0.503"
-                app:layout_constraintStart_toStartOf="@+id/forgetPassId"
-                app:layout_constraintTop_toBottomOf="@+id/forgetPassId"
-                app:layout_constraintVertical_bias="0.448" />
+                app:layout_constraintStart_toStartOf="@+id/buttUpdateEmailId"
+                app:layout_constraintTop_toBottomOf="@+id/buttUpdateEmailId"
+                app:layout_constraintVertical_bias="0.116" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </ScrollView>
 </layout>

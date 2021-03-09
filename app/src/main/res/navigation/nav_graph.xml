@@ -35,19 +35,33 @@
             android:id="@+id/action_homeFragment_to_mapsFragment"
             app:destination="@id/mapsFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_resetPasswordFragment"
-            app:destination="@id/resetPasswordFragment" />
+            android:id="@+id/action_homeFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/shareLocationFragment"
         android:name="com.example.sharepoint.sharelocationfragment.ShareLocationFragment"
         android:label="Share Location"
-        tools:layout="@layout/fragment_share_location" />
+        tools:layout="@layout/fragment_share_location" >
+        <action
+            android:id="@+id/action_shareLocationFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_shareLocationFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.sharepoint.profilefragment.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.example.sharepoint.settingfragment.SettingFragment"
@@ -56,6 +70,18 @@
         <action
             android:id="@+id/action_settingFragment_to_editProfileUserFragment"
             app:destination="@id/editProfileUserFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_updateEmailFragment"
+            app:destination="@id/updateEmailFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_resetPasswordFragment"
+            app:destination="@id/resetPasswordFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -66,7 +92,11 @@
         android:id="@+id/resetPasswordFragment"
         android:name="com.example.sharepoint.authenticationfragment.ResetPasswordFragment"
         android:label="Reset Password"
-        tools:layout="@layout/fragment_reset_password" />
+        tools:layout="@layout/fragment_reset_password" >
+        <action
+            android:id="@+id/action_resetPasswordFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/addPostFragment"
@@ -76,19 +106,41 @@
         <action
             android:id="@+id/action_addPostFragment_to_showPostFragment"
             app:destination="@id/showPostFragment" />
+        <action
+            android:id="@+id/action_addPostFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_addPostFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/showPostFragment"
         android:name="com.example.sharepoint.showpostfragment.ShowPostFragment"
         android:label="Show Post"
-        tools:layout="@layout/fragment_show_post" />
+        tools:layout="@layout/fragment_show_post" >
+        <action
+            android:id="@+id/action_showPostFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_showPostFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/editProfileUserFragment"
         android:name="com.example.sharepoint.editprofile.EditProfileUserFragment"
-        android:label="EditProfile"
+        android:label="Edit Profile"
         tools:layout="@layout/fragment_edit_profile_user" >
         <action
-            android:id="@+id/action_editProfileUserFragment_to_logInFragment"
+            android:id="@+id/action_editProfileUserFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateEmailFragment"
+        android:name="com.example.sharepoint.updateemailfragment.UpdateEmailFragment"
+        android:label="fragment_update_email"
+        tools:layout="@layout/fragment_update_email" >
+        <action
+            android:id="@+id/action_updateEmailFragment_to_logInFragment"
             app:destination="@id/logInFragment" />
     </fragment>
 

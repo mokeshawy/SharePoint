@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -14,6 +15,8 @@ import androidx.datastore.preferences.createDataStore
 import androidx.datastore.preferences.preferencesKey
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.Navigation
+import com.example.sharepoint.R
 import com.example.sharepoint.homefragment.HomeViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -64,12 +67,16 @@ class ShareLocationViewModel : ViewModel() {
 
                 }
 
-
                 Toast.makeText(context,"Your location send",Toast.LENGTH_SHORT).show()
              }
         }
     }
 
+   // fun logout
+    fun userLogout( view : View){
+        firebaseAuth.signOut()
+        Navigation.findNavController(view).navigate(R.id.action_shareLocationFragment_to_logInFragment)
+    }
 
     // Show data form dataStore
     fun userProfile(context: Context, nameText : TextView, imageProfile : ImageView){

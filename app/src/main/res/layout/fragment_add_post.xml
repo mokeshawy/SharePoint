@@ -96,20 +96,20 @@
                         app:layout_constraintVertical_bias="0.921" />
 
                     <TextView
-                        android:id="@+id/TextLogoutId"
+                        android:id="@+id/texViewGoProfileId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Profile |"
                         android:textColor="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/textProfileId"
+                        app:layout_constraintEnd_toStartOf="@+id/textViewLogoutId"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="@+id/viewImageAddPostProfileId"
                         app:layout_constraintTop_toBottomOf="@+id/viewImageAddPostProfileId"
                         app:layout_constraintVertical_bias="0.00999999" />
 
                     <TextView
-                        android:id="@+id/textProfileId"
+                        android:id="@+id/textViewLogoutId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"

@@ -20,7 +20,6 @@ class CreateAccountFragment : Fragment() {
     lateinit var binding        : FragmentCreateAccountBinding
     val createAccountViewModel  : CreateAccountViewModel by viewModels()
     lateinit var imageUri       : Uri
-    lateinit var progressBar    : ProgressBar
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment

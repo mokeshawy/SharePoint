@@ -1,5 +1,6 @@
 package com.example.sharepoint.settingfragment
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -37,5 +38,32 @@ class SettingFragment : Fragment() {
             findNavController().navigate(R.id.action_settingFragment_to_editProfileUserFragment)
         }
 
+        // go to reset password
+        binding.textViewResetPassId.setOnClickListener {
+            findNavController().navigate(R.id.action_settingFragment_to_resetPasswordFragment)
+        }
+
+        // text view butt log out
+        binding.texViewGoProfileId.setOnClickListener {
+            findNavController().navigate(R.id.action_settingFragment_to_profileFragment)
+        }
+
+        // text view butt go update email
+        binding.textViewEditEmailId.setOnClickListener {
+            findNavController().navigate(R.id.action_settingFragment_to_updateEmailFragment)
+        }
+
+        // text view butt logout
+        binding.textViewLogoutId.setOnClickListener {
+            var alert = AlertDialog.Builder(requireActivity())
+            alert.setTitle("are you need logout")
+            alert.setMessage("click yes will go login page")
+            alert.setPositiveButton("yes"){dialog,which->
+
+                settingViewModel.userLogout( view)
+            }
+            alert.setNegativeButton("no",null)
+            alert.create().show()
+        }
     }
 }

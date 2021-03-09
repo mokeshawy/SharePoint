@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import com.example.sharepoint.R
@@ -32,8 +33,14 @@ class EditProfileUserFragment : Fragment() {
 
 
         // edit profile
+        binding.progressBarEditProfileId.visibility = View.INVISIBLE
         binding.buttEditProfileId.setOnClickListener {
-            viewModelEditProfileUser.editProfileUser(requireActivity() , imageUri , binding.editNameEditProfileId , binding.editPhoneEditProfileId )
+            try{
+                viewModelEditProfileUser.editProfileUser(requireActivity() , view , imageUri , binding.editNameEditProfileId , binding.editPhoneEditProfileId , binding.progressBarEditProfileId)
+            }catch(e:Exception){
+                Toast.makeText(requireActivity() , "Please select image",Toast.LENGTH_SHORT).show()
+                binding.progressBarEditProfileId.visibility = View.INVISIBLE
+            }
         }
 
         // select image

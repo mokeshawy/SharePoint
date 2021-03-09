@@ -1,5 +1,6 @@
 package com.example.sharepoint.profilefragment
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -32,5 +33,18 @@ class ProfileFragment : Fragment() {
                                     binding.textViewNameMyProfileId ,
                                     binding.textViewEmailMyProfileId ,
                                     binding.textViewPhoneMyProfileId)
+
+
+        binding.textViewLogoutId.setOnClickListener {
+            var alert = AlertDialog.Builder(requireActivity())
+            alert.setTitle("are you need logout")
+            alert.setMessage("click yes will go login page")
+            alert.setPositiveButton("yes"){dialog,which->
+
+                profileViewModel.userLogout( view)
+            }
+            alert.setNegativeButton("no",null)
+            alert.create().show()
+        }
     }
 }

@@ -11,6 +11,9 @@ import androidx.datastore.preferences.preferencesKey
 import androidx.datastore.preferences.preferencesSetKey
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.Navigation
+import com.example.sharepoint.R
+import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -46,6 +49,13 @@ class ProfileViewModel : ViewModel() {
             textViewPhone.text  = showPhone(PHONE_KEY)
         }
 
+    }
+
+    // firebase connection
+    var firebaseAuth        = FirebaseAuth.getInstance()
+    fun userLogout( view : View){
+        firebaseAuth.signOut()
+        Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_logInFragment)
     }
 
     suspend fun showImage(key : String): String?{

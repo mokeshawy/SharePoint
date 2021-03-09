@@ -71,8 +71,6 @@ class CreateAccountViewModel : ViewModel(){
                                 var map = HashMap<String , String>()
 
                                 map["name"]     = editName.value!!.toString()
-                                map["password"] = editPass.value!!.toString()
-                                map["email"]    = editEmail.value!!.toString()
                                 map["phone"]    = editPhone.value!!.toString()
                                 map["userId"]   = id.toString()
                                 map["image"]    = itImageDownload.toString()
@@ -86,11 +84,13 @@ class CreateAccountViewModel : ViewModel(){
 
                         }else{
                             Toast.makeText(context , "Error ${itSaveImage.exception.toString()}",Toast.LENGTH_SHORT).show()
+                            progressBar.visibility = View.INVISIBLE
                         }
                     }
 
                 }else{
                     Toast.makeText(context , "Error ${it.exception.toString()}",Toast.LENGTH_SHORT).show()
+                    progressBar.visibility = View.INVISIBLE
                 }
             }
         }
