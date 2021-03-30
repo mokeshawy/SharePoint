@@ -18,6 +18,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.sharepoint.R
 import com.example.sharepoint.databinding.FragmentMapsBinding
+import com.example.sharepoint.utils.Constants
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -55,11 +56,11 @@ class MapsFragment : Fragment() {
 
         // call operation for firebase
         firebaseDatabase            = FirebaseDatabase.getInstance()
-        userLocation                = firebaseDatabase.getReference("MyLocation")
-        userReference               = firebaseDatabase.getReference("UserRef")
+        userLocation                = firebaseDatabase.getReference(Constants.REF_LOCATION)
+        userReference               = firebaseDatabase.getReference(Constants.REF_USER)
 
         // operation on for data Store
-        dataStore                   = requireActivity().createDataStore(name = "UserLocationPref")
+        dataStore                   = requireActivity().createDataStore(name = Constants.DATA_STORE_NAME_LOCATION_PREF)
 
     }
 
@@ -73,18 +74,18 @@ class MapsFragment : Fragment() {
             userLocation.child(uId.toString()).addValueEventListener( object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
 
-                    var latitude  = snapshot.child("latitude").value.toString()
-                    var longitude = snapshot.child("longitude").value.toString()
+                    var latitude  = snapshot.child(Constants.LATITUDE_KEY).value.toString()
+                    var longitude = snapshot.child(Constants.LONGITUDE_KEY).value.toString()
 
                     try{
                         val location = LatLng(latitude.toDouble(), longitude.toDouble())
 
                         // show user by id into add marker by name
-                        userReference.orderByChild("userId").equalTo(uId).addValueEventListener( object : ValueEventListener{
+                        userReference.orderByChild(Constants.UID_KEY).equalTo(uId).addValueEventListener( object : ValueEventListener{
                             override fun onDataChange(snapshot: DataSnapshot) {
                                 for ( ds in snapshot.children){
 
-                                    var name = ds.child("name").value.toString()
+                                    var name = ds.child(Constants.CHILD_NAME_KEY).value.toString()
                                     googleMap.addMarker(MarkerOptions().position(location).title(name))
                                     googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location,16.0f))
                                 }

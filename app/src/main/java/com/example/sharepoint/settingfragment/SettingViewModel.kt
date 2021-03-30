@@ -13,6 +13,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import com.example.sharepoint.R
 import com.example.sharepoint.addpostfragment.AddPostViewModel
+import com.example.sharepoint.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.flow.first
@@ -22,24 +23,16 @@ class SettingViewModel : ViewModel() {
 
     lateinit var dataStore  : DataStore<Preferences>
 
-    companion object{
-        var NAME_KEY    = "name"
-        var PASS_KEY    = "password"
-        var MAIL_KEY    = "email"
-        var PHONE_KEY   = "phone"
-        var IMAGE_KEY   = "image"
-        var UID_KEY     = "userId"
-    }
 
     fun userProfile(context : Context, imageView: ImageView, textViewName : TextView){
-        dataStore = context.createDataStore(name = "UserPref")
+        dataStore = context.createDataStore(name = Constants.DATA_STORE_USER_NAME_KEY)
         viewModelScope.launch {
-            textViewName.text = showName(AddPostViewModel.NAME_KEY)
-            Picasso.get().load(showImage(AddPostViewModel.IMAGE_KEY)).into(imageView)
+            textViewName.text = showName(Constants.NAME_KEY)
+            Picasso.get().load(showImage(Constants.IMAGE_KEY)).into(imageView)
         }
     }
 
-    var firebaseAuth        = FirebaseAuth.getInstance()
+    var firebaseAuth  = FirebaseAuth.getInstance()
     fun userLogout( view : View){
         firebaseAuth.signOut()
         Navigation.findNavController(view).navigate(R.id.action_settingFragment_to_logInFragment)

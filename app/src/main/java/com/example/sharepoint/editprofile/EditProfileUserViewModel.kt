@@ -24,27 +24,19 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.first
 import okhttp3.Dispatcher
 import com.example.sharepoint.R
+import com.example.sharepoint.utils.Constants
 
 class EditProfileUserViewModel : ViewModel() {
 
 
     lateinit var dataStore  : DataStore<Preferences>
 
-    companion object{
-        var NAME_KEY    = "name"
-        var PASS_KEY    = "password"
-        var MAIL_KEY    = "email"
-        var PHONE_KEY   = "phone"
-        var IMAGE_KEY   = "image"
-        var UID_KEY     = "userId"
-    }
-
     var editName    = MutableLiveData<String>("")
     var editPhone   = MutableLiveData<String>("")
 
     var firebaseAuth        = FirebaseAuth.getInstance()
     var firebaseDatabase    = FirebaseDatabase.getInstance()
-    var userReference       = firebaseDatabase.getReference("UserRef")
+    var userReference       = firebaseDatabase.getReference(Constants.REF_USER)
     var myStorage           = FirebaseStorage.getInstance().reference
 
 
@@ -72,12 +64,11 @@ class EditProfileUserViewModel : ViewModel() {
                     if(itSaveImage.isSuccessful){
                         refStorage.downloadUrl.addOnSuccessListener { itImageDownload->
 
-                                var map = HashMap<String, String>()
+                                var map = HashMap<String, Any>()
                                 map["name"]     = editName.value!!.toString()
                                 map["phone"]    = editPhone.value!!.toString()
-                                map["userId"]   = userId.toString()
                                 map["image"]    = itImageDownload.toString()
-                                userReference.child(userId.toString()).setValue(map)
+                                userReference.child(userId.toString()).updateChildren(map)
 
                             Toast.makeText(context,"information has bin edit", Toast.LENGTH_SHORT).show()
                             Navigation.findNavController(view).navigate(R.id.action_editProfileUserFragment_to_profileFragment)

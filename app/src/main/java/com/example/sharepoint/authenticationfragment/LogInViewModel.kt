@@ -2,7 +2,6 @@ package com.example.sharepoint.authenticationfragment
 
 import android.app.AlertDialog
 import android.content.Context
-import android.provider.Settings
 import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
@@ -11,42 +10,27 @@ import androidx.datastore.DataStore
 import androidx.datastore.preferences.*
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import com.example.sharepoint.R
-import com.example.sharepoint.datastorerepository.DataStoreRepository
+import com.example.sharepoint.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
 
 class LogInViewModel() : ViewModel(){
 
     lateinit var  dataStore : DataStore<Preferences>
-    // companion object for key dataStore
-    companion object{
-        var NAME_KEY    = "name"
-        var PASS_KEY    = "password"
-        var MAIL_KEY    = "email"
-        var PHONE_KEY   = "phone"
-        var IMAGE_KEY   = "image"
-        var UID_KEY     = "userId"
-    }
 
     var editEmail = MutableLiveData<String>("")
     var editPass  = MutableLiveData<String>("")
 
     var firebaseAuth        = FirebaseAuth.getInstance()
     var firebaseDatabase    = FirebaseDatabase.getInstance()
-    var userReference       = firebaseDatabase.getReference("UserRef")
+    var userReference       = firebaseDatabase.getReference(Constants.REF_USER)
 
     // fun log in
     fun logIn( context : Context , view : View , email : EditText , pass : EditText , progressBar: ProgressBar){
@@ -81,14 +65,15 @@ class LogInViewModel() : ViewModel(){
                             userReference.child(userId.toString()).addValueEventListener(object : ValueEventListener{
                                 override fun onDataChange(snapshot: DataSnapshot) {
 
-                                    var name    = snapshot.child("name").value.toString()
-                                    var phone   = snapshot.child("phone").value.toString()
-                                    var userId  = snapshot.child("userId").value.toString()
-                                    var image   = snapshot.child("image").value.toString()
+                                    var name    = snapshot.child(Constants.CHILD_NAME_KEY).value.toString()
+                                    var phone   = snapshot.child(Constants.CHILD_PHONE_KEY).value.toString()
+                                    var userId  = snapshot.child(Constants.CHILD_USER_ID_KEY).value.toString()
+                                    var image   = snapshot.child(Constants.IMAGE_KEY).value.toString()
 
                                     // Save data by dataStore
-                                    dataStore = context.createDataStore( name = "UserPref")
+                                    dataStore = context.createDataStore( name = Constants.DATA_STORE_USER_NAME_KEY)
                                     viewModelScope.launch {
+
                                         saveValue( name, editPass.value!! , editEmail.value!! , phone, userId , image )
                                     }
                                 }
@@ -120,12 +105,12 @@ class LogInViewModel() : ViewModel(){
     suspend fun saveValue(name : String , pass : String , mail : String , phone : String , userId : String,  image : String){
 
         dataStore.edit { userPref ->
-            userPref[preferencesKey<String>(NAME_KEY)]  = name
-            userPref[preferencesKey<String>(PASS_KEY)]  = pass
-            userPref[preferencesKey<String>(MAIL_KEY)]  = mail
-            userPref[preferencesKey<String>(PHONE_KEY)] = phone
-            userPref[preferencesKey<String>(UID_KEY)]   = userId
-            userPref[preferencesKey<String>(IMAGE_KEY)] = image
+            userPref[preferencesKey<String>(Constants.NAME_KEY)]  = name
+            userPref[preferencesKey<String>(Constants.PASS_KEY)]  = pass
+            userPref[preferencesKey<String>(Constants.MAIL_KEY)]  = mail
+            userPref[preferencesKey<String>(Constants.PHONE_KEY)] = phone
+            userPref[preferencesKey<String>(Constants.UID_KEY)]   = userId
+            userPref[preferencesKey<String>(Constants.IMAGE_KEY)] = image
         }
     }
 

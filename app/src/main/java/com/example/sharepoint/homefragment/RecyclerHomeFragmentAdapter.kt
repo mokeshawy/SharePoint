@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sharepoint.R
 import com.example.sharepoint.databinding.RecyclerHomefragmentItemBinding
 import com.example.sharepoint.mapsfragment.MapsFragment
+import com.example.sharepoint.utils.Constants
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -47,17 +48,17 @@ class RecyclerHomeFragmentAdapter (private val dataSet: ArrayList<ShowAllUserMod
         Picasso.get().load(dataSet[position].image).into(viewHolder.binding.viewImageHomeProfileId)
         
         var firebaseDatabase    = FirebaseDatabase.getInstance()
-        var userLocationRef     = firebaseDatabase.getReference("UserRef")
+        var userReference     = firebaseDatabase.getReference(Constants.REF_USER)
 
         viewHolder.binding.selectUserId.setOnClickListener {
 
-            userLocationRef.orderByChild("userId").equalTo(dataSet[position].uId).addValueEventListener( object : ValueEventListener {
+            userReference.orderByChild(Constants.UID_KEY).equalTo(dataSet[position].uId).addValueEventListener( object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for(ds in snapshot.children){
 
-                        var userId = ds.child("userId").value.toString()
+                        var userId = ds.child(Constants.UID_KEY).value.toString()
 
-                        dataStore = context.createDataStore( name = "UserLocationPref")
+                        dataStore = context.createDataStore( name = Constants.DATA_STORE_NAME_LOCATION_PREF)
                         GlobalScope.launch {
                             saveValue(userId)
                         }
@@ -82,7 +83,7 @@ lateinit var  dataStore : DataStore<Preferences>
 
 suspend fun saveValue( userId : String ){
     dataStore.edit { userPref ->
-        userPref[preferencesKey<String>("userId")] = userId
+        userPref[preferencesKey<String>(Constants.UID_KEY)] = userId
     }
 }
 

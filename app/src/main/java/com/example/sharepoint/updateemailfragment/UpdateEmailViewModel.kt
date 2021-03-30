@@ -9,7 +9,9 @@ import androidx.lifecycle.MutableLiveData
 import com.example.sharepoint.R
 import androidx.lifecycle.ViewModel
 import androidx.navigation.Navigation
+import com.example.sharepoint.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class UpdateEmailViewModel : ViewModel() {
 
@@ -17,6 +19,8 @@ class UpdateEmailViewModel : ViewModel() {
 
 
     var firebaseAuth    = FirebaseAuth.getInstance()
+    var firebase        = FirebaseDatabase.getInstance()
+    var userReference   = firebase.getReference(Constants.REF_USER)
     var user            = firebaseAuth.currentUser
     fun updateEmail( context: Context , view: View , editTextEmail : EditText , progressBar: ProgressBar){
 
@@ -25,8 +29,15 @@ class UpdateEmailViewModel : ViewModel() {
         }else{
             progressBar.visibility = View.VISIBLE
             user!!.updateEmail(editUpdateEmail.value!!).addOnCompleteListener {
+                var userId = firebaseAuth.currentUser?.uid
                 if(it.isSuccessful){
                     firebaseAuth.currentUser?.sendEmailVerification()
+
+                    var map = HashMap<String , Any>()
+
+                    map[Constants.CHILD_EMAIL_KEY] = editUpdateEmail.value!!.toString()
+                    userReference.child(userId.toString()).updateChildren(map)
+
                     Toast.makeText(context ,"send verification ${editUpdateEmail.value}",Toast.LENGTH_SHORT).show()
                     Navigation.findNavController(view).navigate(R.id.action_updateEmailFragment_to_logInFragment)
                     progressBar.visibility = View.INVISIBLE

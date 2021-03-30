@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.Navigation
 import com.example.sharepoint.R
+import com.example.sharepoint.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -25,7 +26,7 @@ class CreateAccountViewModel : ViewModel(){
 
     var firebaseAuth        = FirebaseAuth.getInstance()
     var firebaseDatabase    = FirebaseDatabase.getInstance()
-    var userReference       = firebaseDatabase.getReference("UserRef")
+    var userReference       = firebaseDatabase.getReference(Constants.REF_USER)
     var myStorage           = FirebaseStorage.getInstance().reference
 
     // fun create account
@@ -70,10 +71,11 @@ class CreateAccountViewModel : ViewModel(){
 
                                 var map = HashMap<String , String>()
 
-                                map["name"]     = editName.value!!.toString()
-                                map["phone"]    = editPhone.value!!.toString()
-                                map["userId"]   = id.toString()
-                                map["image"]    = itImageDownload.toString()
+                                map[Constants.CHILD_NAME_KEY]     = editName.value!!.toString()
+                                map[Constants.CHILD_EMAIL_KEY]    = editEmail.value!!.toString()
+                                map[Constants.CHILD_PHONE_KEY]    = editPhone.value!!.toString()
+                                map[Constants.CHILD_USER_ID_KEY]  = id.toString()
+                                map[Constants.CHILD_IMAGE_KEY]    = itImageDownload.toString()
 
                                 userReference.child(userId.toString()).setValue(map)
                                 Toast.makeText(context,"Account Created" , Toast.LENGTH_SHORT).show()

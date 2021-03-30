@@ -20,20 +20,17 @@ import com.squareup.picasso.Picasso
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import com.example.sharepoint.R
+import com.example.sharepoint.utils.Constants
 
 
 class HomeViewModel() : ViewModel() {
 
     lateinit var dataStore: DataStore<Preferences>
-    companion object{
-        var NAME_KEY    = "name"
-        var IMAGE_KEY   = "image"
-    }
 
     // firebase connection
     var firebaseAuth        = FirebaseAuth.getInstance()
     var firebaseDatabase    = FirebaseDatabase.getInstance()
-    var userReference       = firebaseDatabase.getReference("UserRef")
+    var userReference       = firebaseDatabase.getReference(Constants.REF_USER)
 
     var allUserSignUpShow = MutableLiveData<ArrayList<ShowAllUserModel>>()
     var array             = ArrayList<ShowAllUserModel>()
@@ -46,9 +43,9 @@ class HomeViewModel() : ViewModel() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for( ds in snapshot.children){
 
-                    var name    = ds.child("name").value.toString()
-                    var userId  = ds.child("userId").value.toString()
-                    var image   = ds.child("image").value.toString()
+                    var name    = ds.child(Constants.CHILD_NAME_KEY).value.toString()
+                    var userId  = ds.child(Constants.CHILD_USER_ID_KEY).value.toString()
+                    var image   = ds.child(Constants.CHILD_IMAGE_KEY).value.toString()
                     array.add(ShowAllUserModel(name , userId , image))
                 }
                 allUserSignUpShow.value = array
@@ -67,10 +64,10 @@ class HomeViewModel() : ViewModel() {
 
     // Show data form dataStore
     fun readData(context: Context , nameText : TextView , imageProfile : ImageView){
-        dataStore = context.createDataStore(name = "UserPref")
+        dataStore = context.createDataStore(name = Constants.DATA_STORE_USER_NAME_KEY)
         viewModelScope.launch {
-            nameText.text = showdName(NAME_KEY)
-            Picasso.get().load(showImage(IMAGE_KEY)).into(imageProfile)
+            nameText.text = showdName(Constants.NAME_KEY)
+            Picasso.get().load(showImage(Constants.IMAGE_KEY)).into(imageProfile)
 
         }
     }
@@ -87,6 +84,5 @@ class HomeViewModel() : ViewModel() {
         val dataStoreKey = preferencesKey<String>(key)
         val preference = dataStore.data.first()
         return preference[dataStoreKey]
-
     }
 }

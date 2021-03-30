@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import com.example.sharepoint.R
+import com.example.sharepoint.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -25,23 +26,19 @@ import kotlinx.coroutines.launch
 class ShowPostViewModel : ViewModel() {
 
     lateinit var dataStore : DataStore<Preferences>
-    companion object{
-        var NAME_KEY    = "name"
-        var IMAGE_KEY   = "image"
-    }
 
     fun userProfile(context : Context, imageView: ImageView , textName : TextView){
-        dataStore = context.createDataStore(name = "UserPref")
+        dataStore = context.createDataStore(name = Constants.DATA_STORE_USER_NAME_KEY)
 
         viewModelScope.launch {
-            textName.text = showName(NAME_KEY)
-            Picasso.get().load(showImage(IMAGE_KEY)).into(imageView)
+            textName.text = showName(Constants.NAME_KEY)
+            Picasso.get().load(showImage(Constants.IMAGE_KEY)).into(imageView)
         }
     }
 
     var showPostForAllUser = MutableLiveData<ArrayList<ShowPostModel>>()
     var firebaseDatabase    = FirebaseDatabase.getInstance()
-    var postReference       = firebaseDatabase.getReference("PostRef")
+    var postReference       = firebaseDatabase.getReference(Constants.POST_REF_KEY)
     var array               = ArrayList<ShowPostModel>()
 
     fun showPost(){
@@ -50,9 +47,9 @@ class ShowPostViewModel : ViewModel() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for ( ds in snapshot.children){
 
-                    var name    = ds.child("name").value.toString()
-                    var post    = ds.child("post").value.toString()
-                    var image   = ds.child("postImage").value.toString()
+                    var name    = ds.child(Constants.POST_CHILD_NAME_KEY).value.toString()
+                    var post    = ds.child(Constants.POST_CHILD_POST_KEY).value.toString()
+                    var image   = ds.child(Constants.POST_CHILD_POST_IMAGE_KEY).value.toString()
 
                     array.add(ShowPostModel(name , post , image))
                 }

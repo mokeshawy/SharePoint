@@ -14,6 +14,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sharepoint.retrofitconnection.ServiceBuilder
+import com.example.sharepoint.utils.Constants
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -36,11 +37,6 @@ class MapsViewModel : ViewModel() {
 
    lateinit var dataStore: DataStore<Preferences>
 
-    companion object{
-        var NAME_KEY    = "name"
-        var UID_KEY     = "userId"
-    }
-
     lateinit var fusedLocationProviderClient  : FusedLocationProviderClient
 
     var googleDirection = MutableLiveData<MapsModel>()
@@ -48,11 +44,11 @@ class MapsViewModel : ViewModel() {
 
     fun callGoogleDirection( context : Context , map : GoogleMap , textViewRoutes : TextView , textViewDuration : TextView ){
 
-        dataStore = context.createDataStore(name = "UserLocationPref")
+        dataStore = context.createDataStore(name = Constants.DATA_STORE_NAME_LOCATION_PREF)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
         var firebaseDatabase        = FirebaseDatabase.getInstance()
-        var userLocationRef         = firebaseDatabase.getReference("MyLocation")
+        var userLocationRef         = firebaseDatabase.getReference(Constants.REF_LOCATION)
 
         if(ActivityCompat.checkSelfPermission( context ,  android.Manifest.permission.ACCESS_FINE_LOCATION) !=PackageManager.PERMISSION_GRANTED){
             //ActivityCompat.requestPermissions(context as Activity,arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 1)
@@ -64,11 +60,11 @@ class MapsViewModel : ViewModel() {
 
                 viewModelScope.launch {
 
-                    userLocationRef.child( showUserId(UID_KEY).toString()).addValueEventListener( object : ValueEventListener{
+                    userLocationRef.child( showUserId(Constants.UID_KEY).toString()).addValueEventListener( object : ValueEventListener{
                         override fun onDataChange(snapshot: DataSnapshot) {
 
-                            var latitude    = snapshot.child("latitude").value.toString()
-                            var longitude   = snapshot.child("longitude").value.toString()
+                            var latitude    = snapshot.child(Constants.LATITUDE_KEY).value.toString()
+                            var longitude   = snapshot.child(Constants.LONGITUDE_KEY).value.toString()
 
                             var destination = "${latitude} , ${ longitude}"
 
@@ -104,7 +100,7 @@ class MapsViewModel : ViewModel() {
 
 
     suspend fun drawDirections(startLat : Double, startLon:Double, endLat : Double, endLon : Double, map: GoogleMap , context: Context) {
-        dataStore = context.createDataStore( name = "UserPref")
+        dataStore = context.createDataStore( name = Constants.DATA_STORE_USER_NAME_KEY)
 
         val path: MutableList<LatLng> = ArrayList()
         val context = GeoApiContext().setQueryRateLimit(3).setApiKey("AIzaSyB4ski2q_cAYGl2LA4aHyjU3LALRspXZvM")
@@ -112,7 +108,7 @@ class MapsViewModel : ViewModel() {
         var latLngOrigin = LatLng(startLat,startLon)
         var latLngDestination = LatLng(endLat,endLon)
         viewModelScope.launch {
-            map.addMarker(MarkerOptions().position(latLngOrigin).title("My Location : ${showUserLogInName(NAME_KEY)}").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)))
+            map.addMarker(MarkerOptions().position(latLngOrigin).title("My Location : ${showUserLogInName(Constants.NAME_KEY)}").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)))
         }
         //map.addMarker(MarkerOptions().position(latLngDestination).title("Location"))
 

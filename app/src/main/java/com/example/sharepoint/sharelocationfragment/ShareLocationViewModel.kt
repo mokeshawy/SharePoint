@@ -18,6 +18,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import com.example.sharepoint.R
 import com.example.sharepoint.homefragment.HomeViewModel
+import com.example.sharepoint.utils.Constants
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
@@ -29,22 +30,16 @@ import kotlinx.coroutines.launch
 class ShareLocationViewModel : ViewModel() {
     // create dataStore
     lateinit var dataStore: DataStore<Preferences>
-    companion object{
-        var NAME_KEY    = "name"
-        var PHONE_KEY   = "phone"
-        var UID_KEY     = "userId"
-        var IMAGE_KEY   = "image"
-    }
 
     lateinit var fusedLocationClient  : FusedLocationProviderClient
     var firebaseDatabase    = FirebaseDatabase.getInstance()
     var firebaseAuth        = FirebaseAuth.getInstance()
-    var userLocationRef     = firebaseDatabase.getReference("MyLocation")
+    var userLocationRef     = firebaseDatabase.getReference(Constants.REF_LOCATION)
     var userId              = firebaseAuth.currentUser?.uid
 
     // fun send location for user log in
     fun senYourLocation( context: Context ){
-        dataStore = context.createDataStore(name = "UserPref")
+        dataStore = context.createDataStore(name = Constants.DATA_STORE_USER_NAME_KEY)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
 
         if(ActivityCompat.checkSelfPermission(context ,Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ){
@@ -58,12 +53,12 @@ class ShareLocationViewModel : ViewModel() {
 
                 var map = HashMap<String , String>()
 
-                map["latitude"]     = latitude
-                map["longitude"]    = longitude
+                map[Constants.LATITUDE_KEY]     = latitude
+                map[Constants.LONGITUDE_KEY]    = longitude
 
                 viewModelScope.launch {
 
-                    userLocationRef.child(showUserId(UID_KEY).toString()).setValue(map)
+                    userLocationRef.child(showUserId(Constants.UID_KEY).toString()).setValue(map)
 
                 }
 
@@ -80,10 +75,10 @@ class ShareLocationViewModel : ViewModel() {
 
     // Show data form dataStore
     fun userProfile(context: Context, nameText : TextView, imageProfile : ImageView){
-        dataStore = context.createDataStore(name = "UserPref")
+        dataStore = context.createDataStore(name = Constants.DATA_STORE_USER_NAME_KEY)
         viewModelScope.launch {
-            nameText.text = showdName(HomeViewModel.NAME_KEY)
-            Picasso.get().load(showImage(HomeViewModel.IMAGE_KEY)).into(imageProfile)
+            nameText.text = showdName(Constants.NAME_KEY)
+            Picasso.get().load(showImage(Constants.IMAGE_KEY)).into(imageProfile)
 
         }
     }

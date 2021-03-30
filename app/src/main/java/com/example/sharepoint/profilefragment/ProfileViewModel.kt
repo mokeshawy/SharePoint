@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import com.example.sharepoint.R
+import com.example.sharepoint.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.flow.first
@@ -21,16 +22,6 @@ import kotlinx.coroutines.launch
 class ProfileViewModel : ViewModel() {
 
     lateinit var dataStore: DataStore<Preferences>
-    companion object{
-        var NAME_KEY    = "name"
-        var PASS_KEY    = "password"
-        var MAIL_KEY    = "email"
-        var PHONE_KEY   = "phone"
-        var IMAGE_KEY   = "image"
-        var UID_KEY     = "userId"
-    }
-
-
 
     fun userProfile(context: Context,
                     view : View,
@@ -39,14 +30,14 @@ class ProfileViewModel : ViewModel() {
                     textViewEmail : TextView ,
                     textViewPhone : TextView ){
 
-        dataStore = context.createDataStore(name = "UserPref")
+        dataStore = context.createDataStore(name = Constants.DATA_STORE_USER_NAME_KEY)
 
         viewModelScope.launch {
 
-            Picasso.get().load(showImage(IMAGE_KEY)).into(imageViewProfile)
-            textViewName.text   = showName(NAME_KEY)
-            textViewEmail.text  = showEmail(MAIL_KEY)
-            textViewPhone.text  = showPhone(PHONE_KEY)
+            Picasso.get().load(showImage(Constants.IMAGE_KEY)).into(imageViewProfile)
+            textViewName.text   = showName(Constants.NAME_KEY)
+            textViewEmail.text  = showEmail(Constants.MAIL_KEY)
+            textViewPhone.text  = showPhone(Constants.PHONE_KEY)
         }
 
     }
