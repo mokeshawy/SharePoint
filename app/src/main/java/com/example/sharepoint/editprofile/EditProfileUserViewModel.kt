@@ -28,9 +28,7 @@ import com.example.sharepoint.utils.Constants
 
 class EditProfileUserViewModel : ViewModel() {
 
-
-    lateinit var dataStore  : DataStore<Preferences>
-
+    
     var editName    = MutableLiveData<String>("")
     var editPhone   = MutableLiveData<String>("")
 

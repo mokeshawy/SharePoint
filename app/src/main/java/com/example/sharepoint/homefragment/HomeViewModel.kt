@@ -3,10 +3,6 @@ import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.datastore.DataStore
-import androidx.datastore.preferences.Preferences
-import androidx.datastore.preferences.createDataStore
-import androidx.datastore.preferences.preferencesKey
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,11 +17,10 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import com.example.sharepoint.R
 import com.example.sharepoint.utils.Constants
+import com.example.yshop.datastoreoperetion.DataStoreRepository
 
 
 class HomeViewModel() : ViewModel() {
-
-    lateinit var dataStore: DataStore<Preferences>
 
     // firebase connection
     var firebaseAuth        = FirebaseAuth.getInstance()
@@ -64,25 +59,11 @@ class HomeViewModel() : ViewModel() {
 
     // Show data form dataStore
     fun readData(context: Context , nameText : TextView , imageProfile : ImageView){
-        dataStore = context.createDataStore(name = Constants.DATA_STORE_USER_NAME_KEY)
+
         viewModelScope.launch {
-            nameText.text = showdName(Constants.NAME_KEY)
-            Picasso.get().load(showImage(Constants.IMAGE_KEY)).into(imageProfile)
+            nameText.text = DataStoreRepository(context).showName(Constants.NAME_KEY)
+            Picasso.get().load(DataStoreRepository(context).showImage(Constants.IMAGE_KEY)).into(imageProfile)
 
         }
-    }
-
-    // fun show name from dataStore
-    suspend fun showdName( key : String ): String?{
-        val dataStoreKey = preferencesKey<String>(key)
-        val preference = dataStore.data.first()
-        return preference[dataStoreKey]
-    }
-
-    // fun show image from dataStore
-    suspend fun showImage( key : String ): String?{
-        val dataStoreKey = preferencesKey<String>(key)
-        val preference = dataStore.data.first()
-        return preference[dataStoreKey]
     }
 }

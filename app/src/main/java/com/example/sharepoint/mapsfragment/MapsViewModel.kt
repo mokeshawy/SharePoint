@@ -13,8 +13,10 @@ import androidx.datastore.preferences.preferencesKey
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.sharepoint.datastoreoperetion.DataStoreLocationRepository
 import com.example.sharepoint.retrofitconnection.ServiceBuilder
 import com.example.sharepoint.utils.Constants
+import com.example.yshop.datastoreoperetion.DataStoreRepository
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -44,8 +46,6 @@ class MapsViewModel : ViewModel() {
 
     fun callGoogleDirection( context : Context , map : GoogleMap , textViewRoutes : TextView , textViewDuration : TextView ){
 
-        dataStore = context.createDataStore(name = Constants.DATA_STORE_NAME_LOCATION_PREF)
-
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
         var firebaseDatabase        = FirebaseDatabase.getInstance()
         var userLocationRef         = firebaseDatabase.getReference(Constants.REF_LOCATION)
@@ -60,7 +60,7 @@ class MapsViewModel : ViewModel() {
 
                 viewModelScope.launch {
 
-                    userLocationRef.child( showUserId(Constants.UID_KEY).toString()).addValueEventListener( object : ValueEventListener{
+                    userLocationRef.child( DataStoreLocationRepository(context).showUserForLocationId(Constants.UID_KEY).toString()).addValueEventListener( object : ValueEventListener{
                         override fun onDataChange(snapshot: DataSnapshot) {
 
                             var latitude    = snapshot.child(Constants.LATITUDE_KEY).value.toString()
@@ -92,12 +92,6 @@ class MapsViewModel : ViewModel() {
         }
     }
 
-    suspend fun showUserId(key : String): String?{
-        var dataStoreKey = preferencesKey<String>(key)
-        var preference = dataStore.data.first()
-        return preference[dataStoreKey]
-    }
-
 
     suspend fun drawDirections(startLat : Double, startLon:Double, endLat : Double, endLon : Double, map: GoogleMap , context: Context) {
         dataStore = context.createDataStore( name = Constants.DATA_STORE_USER_NAME_KEY)
@@ -108,7 +102,7 @@ class MapsViewModel : ViewModel() {
         var latLngOrigin = LatLng(startLat,startLon)
         var latLngDestination = LatLng(endLat,endLon)
         viewModelScope.launch {
-            map.addMarker(MarkerOptions().position(latLngOrigin).title("My Location : ${showUserLogInName(Constants.NAME_KEY)}").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)))
+            map.addMarker(MarkerOptions().position(latLngOrigin).title("My Location : ${showName(Constants.NAME_KEY)}").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)))
         }
         //map.addMarker(MarkerOptions().position(latLngDestination).title("Location"))
 
@@ -169,11 +163,12 @@ class MapsViewModel : ViewModel() {
         }
     }
 
-    suspend fun showUserLogInName(key : String): String?{
+    suspend fun showName(key : String): String?{
 
         var dataStoreKey = preferencesKey<String>(key)
         var preference = dataStore.data.first()
         return preference[dataStoreKey]
+
     }
 }
 

@@ -60,7 +60,7 @@ class MapsFragment : Fragment() {
         userReference               = firebaseDatabase.getReference(Constants.REF_USER)
 
         // operation on for data Store
-        dataStore                   = requireActivity().createDataStore(name = Constants.DATA_STORE_NAME_LOCATION_PREF)
+        dataStore  = requireActivity().createDataStore(name = Constants.DATA_STORE_NAME_LOCATION_PREF)
 
     }
 

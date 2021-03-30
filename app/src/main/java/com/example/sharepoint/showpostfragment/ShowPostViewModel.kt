@@ -14,6 +14,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import com.example.sharepoint.R
 import com.example.sharepoint.utils.Constants
+import com.example.yshop.datastoreoperetion.DataStoreRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -28,11 +29,10 @@ class ShowPostViewModel : ViewModel() {
     lateinit var dataStore : DataStore<Preferences>
 
     fun userProfile(context : Context, imageView: ImageView , textName : TextView){
-        dataStore = context.createDataStore(name = Constants.DATA_STORE_USER_NAME_KEY)
 
         viewModelScope.launch {
-            textName.text = showName(Constants.NAME_KEY)
-            Picasso.get().load(showImage(Constants.IMAGE_KEY)).into(imageView)
+            textName.text = DataStoreRepository(context).showName(Constants.NAME_KEY)
+            Picasso.get().load(DataStoreRepository(context).showImage(Constants.IMAGE_KEY)).into(imageView)
         }
     }
 
@@ -68,22 +68,5 @@ class ShowPostViewModel : ViewModel() {
     fun userLogout( view : View){
         firebaseAuth.signOut()
         Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_logInFragment)
-    }
-
-
-    suspend fun showImage(key : String): String?{
-
-        var dataStoreKey = preferencesKey<String>(key)
-        var preference = dataStore.data.first()
-        return preference[dataStoreKey]
-
-    }
-
-    suspend fun showName( key : String ): String?{
-
-        var dataStoreKey = preferencesKey<String>(key)
-        var preference = dataStore.data.first()
-        return preference[dataStoreKey]
-
     }
 }
