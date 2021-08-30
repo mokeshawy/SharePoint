@@ -19,7 +19,7 @@ import com.example.sharepoint.databinding.FragmentAddPostBinding
 class AddPostFragment : Fragment() {
 
     lateinit var binding    : FragmentAddPostBinding
-    val addPostViewModel    : AddPostViewModel by viewModels()
+    private val addPostViewModel    : AddPostViewModel by viewModels()
     lateinit var imageUri   : Uri
     lateinit var progressBar: ProgressBar
     override fun onCreateView(
